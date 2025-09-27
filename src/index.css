@@ -11,8 +11,8 @@ All colors MUST be HSL.
     --background: 210 20% 96%;
     --foreground: 226 25% 15%;
 
-    --card: 255 255 255;
-    --card-foreground: 226 25% 15%;
+    --card: 220 13% 18%;
+    --card-foreground: 210 40% 98%;
 
     --popover: 255 255 255;
     --popover-foreground: 226 25% 15%;
@@ -44,7 +44,7 @@ All colors MUST be HSL.
     --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
     --shadow-elevated: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 220 13% 18%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
 
