@@ -23,8 +23,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building project...'
-                // Use npx so Windows Jenkins can find vite
-                bat 'npx vite build'
+                bat '.\\node_modules\\.bin\\vite.cmd build'
             }
         }
 
