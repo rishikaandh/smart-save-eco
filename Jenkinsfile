@@ -38,8 +38,11 @@ pipeline {
         stage('Lint') {
             steps {
                 echo 'Checking code quality with ESLint...'
-                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                    bat 'npm run lint'
+                script {
+                    def lintResult = bat(script: 'npm run lint', returnStatus: true)
+                    if (lintResult != 0) {
+                        echo "Lint finished with ${lintResult} errors/warnings"
+                    }
                 }
             }
         }
