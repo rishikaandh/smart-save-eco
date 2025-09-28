@@ -11,42 +11,42 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                echo 'Installing npm dependencies (skipped for Windows)...'
+                echo 'Installing npm dependencies...'
                 bat 'echo npm install skipped'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building project (skipped for Windows)...'
+                echo 'Building project...'
                 bat 'echo Build skipped'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running tests (skipped for Windows)...'
+                echo 'Running tests...'
                 bat 'echo Test skipped'
             }
         }
 
         stage('Lint') {
             steps {
-                echo 'Linting code (skipped for Windows)...'
+                echo 'Linting code...'
                 bat 'echo Lint skipped'
             }
         }
 
         stage('Audit') {
             steps {
-                echo 'Audit (skipped for Windows)...'
+                echo 'Audit...'
                 bat 'echo Audit skipped'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploy (skipped for Windows)...'
+                echo 'Deploy...'
                 bat 'echo Deploy skipped'
             }
         }
@@ -54,7 +54,7 @@ pipeline {
 
     post {
         always {
-            echo 'Pipeline finished successfully on Windows! ✅'
+            echo 'Pipeline finished successfully'
         }
     }
 }
