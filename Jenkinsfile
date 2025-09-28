@@ -23,10 +23,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building project...'
-                bat 'npx vite build'
+                bat 'node_modules\\.bin\\vite.cmd build'
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Running tests...'
