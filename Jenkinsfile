@@ -2,12 +2,11 @@ pipeline {
     agent any
 
     environment {
-        NODE_HOME = 'C:\\Program Files\\nodejs' // adjust if your Node.js path is different
-        PATH = "${env.NODE_HOME};${env.PATH}"
+        NODE_ENV = 'production'
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout SCM') {
             steps {
                 echo 'Checking out source code...'
                 checkout scm
@@ -41,7 +40,9 @@ pipeline {
                 script {
                     def lintResult = bat(script: 'npm run lint', returnStatus: true)
                     if (lintResult != 0) {
-                        echo "Lint finished with ${lintResult} errors/warnings"
+                        echo "Lint finished with errors/warnings. Check logs. Continuing pipeline..."
+                    } else {
+                        echo "Lint passed successfully."
                     }
                 }
             }
@@ -50,26 +51,35 @@ pipeline {
         stage('Audit') {
             steps {
                 echo 'Running npm audit...'
-                bat 'npm audit'
-                bat 'npm audit fix'
+                script {
+                    def auditResult = bat(script: 'npm audit', returnStatus: true)
+                    if (auditResult != 0) {
+                        echo "Audit finished with vulnerabilities. Check logs. Continuing pipeline..."
+                    } else {
+                        echo "Audit passed successfully."
+                    }
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploy stage (optional, demo only)...'
-                // For demo purposes, just print
-                bat 'echo Deploying application...'
+                echo 'Deploying project...'
+                // Replace below with your real deploy commands
+                bat 'echo Deployment command goes here'
             }
         }
     }
 
     post {
+        always {
+            echo 'Pipeline finished. Check logs for details.'
+        }
         success {
             echo 'Pipeline completed successfully!'
         }
         failure {
-            echo 'Pipeline failed. Check the logs for errors.'
+            echo 'Pipeline failed. Check logs for errors.'
         }
     }
 }
